@@ -1,0 +1,89 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.apollographql.apollo3'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+android {
+    namespace 'com.fmq.mysamplekotlingraphql'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.fmq.mysamplekotlingraphql"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.5'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.7.5'
+
+    //viewmodel
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation 'androidx.compose.runtime:runtime-livedata:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+
+    //Kodein Dependency Injection
+    implementation "org.kodein.di:kodein-di-generic-jvm:6.5.1"
+    implementation "org.kodein.di:kodein-di-framework-android-x:6.5.1"
+    implementation "org.kodein.di:kodein-di-framework-android-core:6.5.1"
+
+    //Gson
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    //Apollo client
+    implementation 'com.apollographql.apollo3:apollo-runtime:3.8.2'
+
+    //swipe refresh
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+apollo {
+   // packageName.set("com.fmq.mysamplekotlingraphql.queries")
+    // instruct the compiler to generate Kotlin models
+      generateKotlinModels.set(true)
+   // generateModelBuilder = true
+     packageNamesFromFilePaths()
+    //generateOptionalOperationVariables.set(false)
+
+  /*  introspection {
+        endpointUrl.set("https://countries.trevorblades.com")
+        schemaFile.set(file("src/main/graphql/schema.graphqls"))
+    }*/
+}
