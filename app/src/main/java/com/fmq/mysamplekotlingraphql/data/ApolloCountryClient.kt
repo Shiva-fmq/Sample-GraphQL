@@ -1,6 +1,5 @@
 package com.fmq.mysamplekotlingraphql.data
 
-import FindCountriesOfAContinentQuery
 import GetContinentsQuery
 import com.apollographql.apollo3.ApolloClient
 import com.fmq.mysamplekotlingraphql.domain.ContinentDetails

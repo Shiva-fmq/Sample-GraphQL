@@ -5,7 +5,6 @@ import com.apollographql.apollo3.network.okHttpClient
 import com.fmq.mysamplekotlingraphql.data.ApolloCountryClient
 import com.fmq.mysamplekotlingraphql.domain.CountryClient
 import com.fmq.mysamplekotlingraphql.domain.GetContinentUseCase
-import com.fmq.mysamplekotlingraphql.domain.GetCountriesUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,12 +30,6 @@ object AppModule {
     @Singleton
     fun provideCountryClient(apolloClient: ApolloClient): CountryClient {
         return ApolloCountryClient(apolloClient)
-    }
-
-    @Provides
-    @Singleton
-    fun provideGetCountriesUseCase(countryClient: CountryClient): GetCountriesUseCase {
-        return GetCountriesUseCase(countryClient)
     }
 
     @Provides

@@ -8,11 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fmq.mysamplekotlingraphql.R
 import com.fmq.mysamplekotlingraphql.databinding.ItemRowContinentBinding
 import com.fmq.mysamplekotlingraphql.delegate.OnItemClickListener
+import com.fmq.mysamplekotlingraphql.domain.ContinentDetails
 
 class ContinentListRecyclerAdapter (val context: Context) : RecyclerView.Adapter<ContinentListRecyclerAdapter.MyViewHolder>() {
 
     private lateinit var mRecyclerBinding: ItemRowContinentBinding
-    private var mItemList: MutableList<GetContinentsQuery.Continent>? = null
+    private var mItemList: MutableList<ContinentDetails>? = null
     private var mListener : OnItemClickListener? = null
     lateinit var mContext : Context
 
@@ -41,8 +42,8 @@ class ContinentListRecyclerAdapter (val context: Context) : RecyclerView.Adapter
         this.mListener = listener
     }
 
-    fun setItemList(dataList: List<GetContinentsQuery.Continent>) {
-        mItemList = dataList.toMutableList()
+    fun setItemList(dataList: List<ContinentDetails>?) {
+        mItemList = dataList?.toMutableList()
         notifyDataSetChanged()
     }
 
@@ -63,7 +64,7 @@ class ContinentListRecyclerAdapter (val context: Context) : RecyclerView.Adapter
     inner class MyViewHolder(private var itemDetailBinding: ItemRowContinentBinding) :
         RecyclerView.ViewHolder(itemDetailBinding.root) {
 
-        fun bind(continents: GetContinentsQuery.Continent, position: Int) {
+        fun bind(continents: ContinentDetails, position: Int) {
 
             itemDetailBinding.txtName.text = continents.name
             itemDetailBinding.txtCode.text = continents.code

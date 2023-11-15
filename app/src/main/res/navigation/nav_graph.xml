@@ -2,10 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    android:id="@+id/nav_graph">
 
-    <fragment
+ <!--   <fragment
         android:id="@+id/FirstFragment"
         android:name="com.fmq.mysamplekotlingraphql.view.FirstFragment"
         android:label="Continents"
@@ -19,8 +18,8 @@
             android:name="data"
             app:argType="string"/>
 
-    </fragment>
-    <fragment
+    </fragment>-->
+  <!--  <fragment
         android:id="@+id/SecondFragment"
         android:name="com.fmq.mysamplekotlingraphql.view.SecondFragment"
         android:label="Countries"
@@ -29,5 +28,5 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
-    </fragment>
+    </fragment>-->
 </navigation>
