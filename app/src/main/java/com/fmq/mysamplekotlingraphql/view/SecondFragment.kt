@@ -24,16 +24,13 @@ import com.fmq.mysamplekotlingraphql.viewmodel.MainViewModel
 import com.fmq.mysamplekotlingraphql.viewmodel.common.kodeinViewModel
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.kodein
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class SecondFragment : Fragment(), KodeinAware {
+class SecondFragment : Fragment() {
 
-    override val kodein by kodein()
-    private val viewModel: MainViewModel by kodeinViewModel()
+  //  private val viewModel: MainViewModel by kodeinViewModel()
     private var _binding: FragmentSecondBinding? = null
     private val binding get() = _binding!!
     private var mReceivedData : GetContinentsQuery.Continent? = null
@@ -74,7 +71,7 @@ class SecondFragment : Fragment(), KodeinAware {
 
     private fun getContinents(code: String) {
 
-        viewModel.countryData.observe(viewLifecycleOwner) {
+       /* viewModel.countryData.observe(viewLifecycleOwner) {
             Log.e("Response : ",Gson().toJson(it))
             if(it!=null) {
                 it.continent?.let {country ->
@@ -85,7 +82,7 @@ class SecondFragment : Fragment(), KodeinAware {
             }
 
         }
-        viewModel.getCountriesList(code)
+        viewModel.getCountriesList(code)*/
 
     }
 

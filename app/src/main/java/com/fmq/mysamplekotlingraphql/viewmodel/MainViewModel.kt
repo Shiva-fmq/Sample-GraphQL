@@ -3,12 +3,18 @@ package com.fmq.mysamplekotlingraphql.viewmodel
 import FindCountriesOfAContinentQuery
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.apollographql.apollo3.ApolloClient
 import com.apollographql.apollo3.api.ApolloResponse
+import com.fmq.mysamplekotlingraphql.domain.GetContinentUseCase
+import com.fmq.mysamplekotlingraphql.domain.GetCountriesUseCase
 import com.fmq.mysamplekotlingraphql.repository.MainRepository
+import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class MainViewModel(private val repository: MainRepository) : ViewModel() {
 

@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,22 +22,23 @@ import com.fmq.mysamplekotlingraphql.databinding.FragmentFirstBinding
 import com.fmq.mysamplekotlingraphql.delegate.OnItemClickListener
 import com.fmq.mysamplekotlingraphql.utils.ApolloConfig
 import com.fmq.mysamplekotlingraphql.utils.AppConstants
+import com.fmq.mysamplekotlingraphql.viewmodel.GraphQLViewModel
 import com.fmq.mysamplekotlingraphql.viewmodel.MainViewModel
 import com.fmq.mysamplekotlingraphql.viewmodel.common.kodeinViewModel
 import com.google.gson.Gson
+import dagger.hilt.android.lifecycle.HiltViewModel
 import okhttp3.OkHttpClient
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.x.kodein
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment(), KodeinAware, OnItemClickListener {
+
+class FirstFragment : Fragment(), OnItemClickListener {
 
     private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
-    override val kodein by kodein()
-    private val viewModel: MainViewModel by kodeinViewModel()
+  //  private val viewModel: MainViewModel by kodeinViewModel()
+    private val graphQLViewModel: GraphQLViewModel by viewModels()
 
     private lateinit var mRecyclerAdapter : ContinentListRecyclerAdapter
     var progress : ProgressDialog? = null
@@ -53,6 +56,7 @@ class FirstFragment : Fragment(), KodeinAware, OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding.swipeRefresh.setOnRefreshListener {
+            mRecyclerAdapter.clearAllItems()
             getList()
         }
     }
@@ -73,13 +77,11 @@ class FirstFragment : Fragment(), KodeinAware, OnItemClickListener {
 
         binding.swipeRefresh.isRefreshing = false
 
-        mRecyclerAdapter.clearAllItems()
-
         progress = ProgressDialog(requireContext())
         progress?.setMessage("Please Wait....")
         progress?.show()
 
-        viewModel.data.observe(viewLifecycleOwner) {
+       /* viewModel.data.observe(viewLifecycleOwner) {
             Log.e("Response", Gson().toJson(it))
             progress?.dismiss()
             if(it!=null) {
@@ -87,9 +89,17 @@ class FirstFragment : Fragment(), KodeinAware, OnItemClickListener {
                     mRecyclerAdapter.setItemList(it.continents)
                 }
             }
+        }*/
+
+
+       // viewModel.getContinentList()
+
+        graphQLViewModel.data.observe(viewLifecycleOwner) {
+            Log.e("Tag", Gson().toJson(it))
         }
 
-        viewModel.getContinentList()
+        graphQLViewModel.getContinentsList()
+
 
     }
 

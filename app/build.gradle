@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.apollographql.apollo3'
     id 'androidx.navigation.safeargs.kotlin'
+    id("com.google.dagger.hilt.android")
+    id 'kotlin-kapt'
 }
 
 android {
@@ -38,11 +40,14 @@ android {
     dataBinding {
         enabled = true
     }
+    kapt {
+        correctErrorTypes true
+    }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -52,13 +57,9 @@ dependencies {
     //viewmodel
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
-    implementation 'androidx.compose.runtime:runtime-livedata:1.5.1'
+    implementation 'androidx.compose.runtime:runtime-livedata:1.5.4'
     implementation 'androidx.appcompat:appcompat:1.6.1'
 
-    //Kodein Dependency Injection
-    implementation "org.kodein.di:kodein-di-generic-jvm:6.5.1"
-    implementation "org.kodein.di:kodein-di-framework-android-x:6.5.1"
-    implementation "org.kodein.di:kodein-di-framework-android-core:6.5.1"
 
     //Gson
     implementation 'com.google.code.gson:gson:2.10.1'
@@ -69,6 +70,10 @@ dependencies {
     //swipe refresh
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01"
 
+    //hilt
+    implementation 'com.google.dagger:hilt-android:2.48.1'
+    kapt 'com.google.dagger:hilt-compiler:2.48.1'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -78,7 +83,7 @@ apollo {
    // packageName.set("com.fmq.mysamplekotlingraphql.queries")
     // instruct the compiler to generate Kotlin models
       generateKotlinModels.set(true)
-   // generateModelBuilder = true
+//    generateModelBuilder = true
      packageNamesFromFilePaths()
     //generateOptionalOperationVariables.set(false)
 
