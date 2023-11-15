@@ -1,41 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="15dp">
+        android:baselineAligned="false">
 
-        <TextView
-            android:id="@+id/txt_name"
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Name"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:layout_weight="0.3"
+            android:gravity="center"
+            android:padding="15dp"
+            android:layout_gravity="center">
 
-        <TextView
-            android:id="@+id/txt_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Phone"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+            <TextView
+                android:id="@+id/txt_emoji"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:textSize="18sp"
+                android:layout_centerInParent="true"/>
 
-        <TextView
-            android:id="@+id/txt_currency"
-            android:layout_width="match_parent"
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Currency"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:orientation="vertical"
+            android:layout_weight="1.7"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/txt_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:gravity="center|start"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txt_native"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Native"
+                android:gravity="center|start"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/txt_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone"
+                android:gravity="center|start"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/txt_currency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Currency"
+                android:gravity="center|start"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/txt_languages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Languages : "
+                android:gravity="center|start"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
 
 
     </LinearLayout>
-
 
 
 </layout>

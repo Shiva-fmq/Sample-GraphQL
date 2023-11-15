@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fmq.mysamplekotlingraphql.R
 import com.fmq.mysamplekotlingraphql.databinding.ItemRowCountryListBinding
 import com.fmq.mysamplekotlingraphql.delegate.OnItemClickListener
+import org.w3c.dom.CharacterData
 
 class CountriesListRecyclerAdapter(val context: Context) : RecyclerView.Adapter<CountriesListRecyclerAdapter.MyViewHolder>() {
 
@@ -66,11 +67,21 @@ class CountriesListRecyclerAdapter(val context: Context) : RecyclerView.Adapter<
 
         fun bind(country: FindCountriesOfAContinentQuery.Country, position: Int) {
 
-            itemDetailBinding.txtName.text = country.name
-            itemDetailBinding.txtPhone.text = "Phone : ${country.phone}"
+            itemDetailBinding.txtName.text = "Name : ${country.name}"
+            itemDetailBinding.txtNative.text = "Capital : ${country.capital?:"-"}"
+            itemDetailBinding.txtPhone.text = "Phone : +${country.phone}"
             itemDetailBinding.txtCurrency.text = "Currency : ${country.currency}"
 
-
+            country.languages.let {
+                country.languages.forEachIndexed { index, language ->
+                    if(index.plus(1) == country.languages.size) {
+                        itemDetailBinding.txtLanguages.append(it[index].name)
+                    }
+                    else {
+                        itemDetailBinding.txtLanguages.append(it[index].name+", ")
+                    }
+                }
+            }
         }
     }
 }
