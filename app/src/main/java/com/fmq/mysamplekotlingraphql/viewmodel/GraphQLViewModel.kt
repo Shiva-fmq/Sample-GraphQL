@@ -7,6 +7,7 @@ import com.fmq.mysamplekotlingraphql.domain.ContinentDetails
 import com.fmq.mysamplekotlingraphql.domain.GetContinentUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import rx.Observable
 import javax.inject.Inject
 
 @HiltViewModel
@@ -17,9 +18,17 @@ class GraphQLViewModel @Inject constructor(
     private var _data : MutableLiveData<List<ContinentDetails>?> = MutableLiveData()
     var data : MutableLiveData<List<ContinentDetails>?> = _data
 
+
+
     fun getContinentsList() {
         viewModelScope.launch {
             _data.postValue(getContinentUseCase.execute())
+        }
+    }
+
+    fun getContinetList2() {
+        viewModelScope.launch {
+            getContinentUseCase.execute2()
         }
     }
 }

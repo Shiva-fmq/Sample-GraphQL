@@ -1,6 +1,7 @@
 package com.fmq.mysamplekotlingraphql.view
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -13,10 +14,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fmq.mysamplekotlingraphql.R
 import com.fmq.mysamplekotlingraphql.adapter.ContinentListRecyclerAdapter
 import com.fmq.mysamplekotlingraphql.databinding.ActivityMainBinding
+import com.fmq.mysamplekotlingraphql.domain.ContinentDetails
 import com.fmq.mysamplekotlingraphql.utils.SimpleDividerItemDecorator
 import com.fmq.mysamplekotlingraphql.viewmodel.GraphQLViewModel
 import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
+import rx.Observable
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -46,6 +49,10 @@ class MainActivity : AppCompatActivity() {
         binding.swipeRefresh.setOnRefreshListener {
             mRecyclerAdapter.clearAllItems()
             getList()
+        }
+
+        binding.fab.setOnClickListener {
+            navigateToSecond()
         }
 
     }
@@ -91,6 +98,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         graphQLViewModel.getContinentsList()
+    }
+
+    private fun navigateToSecond() {
+        Intent(this,SecondActivity::class.java).apply {
+            startActivity(this)
+        }
     }
 
     override fun onResume() {
