@@ -26,9 +26,4 @@ class GraphQLViewModel @Inject constructor(
         }
     }
 
-    fun getContinetList2() {
-        viewModelScope.launch {
-            getContinentUseCase.execute2()
-        }
-    }
 }
